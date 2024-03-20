@@ -1,0 +1,62 @@
+GENUS 22.15-s080_1   Cadence Design Systems, Inc.
+remove_assigns(2)    System Calls Manual   remove_assigns(2)
+
+
+
+Name
+       remove_assigns
+
+
+Object Name
+       Root attributes
+
+
+Syntax
+       remove_assigns {false | true}
+
+
+Description
+       Default: false
+
+       Read-write  root attribute. Determines whether assign
+       statements  should  be  replaced  with   buffers   or
+       inverters in the netlist.
+
+       When  this  attribute  is  set to true, the generated
+       netlist  will  not  contain  any  assign  statements.
+       Depending   on  the  availability  of  cells  in  the
+       library,     and     the     settings     of      the
+       set_remove_assign_options    command,    the   assign
+       statements  might  be  replaced   with   buffers   or
+       inverters.
+
+Examples
+       For  the  following  examples,  assume  the following
+       constant assignments in the RTL code:
+
+       assign out1 = 1'b0;
+       assign out2 = 1'b0;
+
+        * If the remove_assigns attribute us set  to  false,
+       the netlist will remain unchanged.
+
+        *  If  the  remove_assigns attribute us set to true,
+       the netlist will look like:
+
+       BUFX1 rm_assigns_buf_q3(.A (1'b0), .Y (out1));
+       BUFX1 rm_assigns_buf_q3(.A (1'b0), .Y (out2));
+
+Related Information
+       Affects this command:
+              syn_opt
+
+       Affected by this command:
+              set_remove_assign_options
+
+       Affects this attribute:
+              use_tiehilo_for_const
+
+
+
+
+                  Fri Sep 23 12:32:40 2022 remove_assigns(2)
