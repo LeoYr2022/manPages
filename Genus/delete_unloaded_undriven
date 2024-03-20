@@ -1,0 +1,51 @@
+GENUS 21.15-s080_1   Cadence Design Systems, Inc.
+delete_unloaded_undriven(1)                      General Commands Manual                      delete_unloaded_undriven(1)
+
+
+
+Name
+       delete_unloaded_undriven
+
+Syntax
+       delete_unloaded_undriven
+
+       [-disconnect] [-force_bit_blast] [-all] [-inout] [<design>] [> <file>]
+
+Description
+       Disconnects  subports and hierarchical pins connected to constants and that do not fanout to anything, and deletes
+       unloaded and undriven subports from the design. Use this command as a post-processing step to  remove  any  unused
+       subports from the netlist.
+
+       By default the command skips individual bits of a bus that are connected to constants or that are unused.
+
+Parameters
+       -all   Additionally, deletes unloaded and undriven top-level ports from the design.
+
+       <design>
+              Specifies the design from which to remove the unused ports or subports.
+
+       -disconnect
+              Only  disconnects the subports and hierarchical pins that are connected to constants and that do not fanout
+              to anything.
+
+       <file> Specifies the name of the file to which the output of the command should be redirected.
+
+       -force_bit_blast
+              Bitblasts modules that have individual bus bits that are unused or connected to constants and  deletes  the
+              unused bus bits.
+
+       -inout Specifies to delete disconnected inout pins too.
+
+Examples
+        *  The following command deletes the top-level ports that are either unconnected or are connected to constants in
+       the design.
+
+       legacy_genus:/> delete_unloaded_undriven -all /designs/top/
+           Disconnecting constant connected subport(s)/pin(s)
+           No constant connected subport(s)/pin(s) were found
+           Deleting unused port(s) & subport(s)
+           Deleting port '/designs/top/ports_in/b'
+           Deleting port '/designs/top/ports_in/c'
+           Deleting port '/designs/top/port_busses_in/sel'
+
+                                                 Fri Sep 23 12:32:17 2022                     delete_unloaded_undriven(1)
